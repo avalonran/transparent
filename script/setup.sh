@@ -15,9 +15,10 @@ BASIC='man gcc make sudo lsof ssh openssl tree vim language-pack-zh-hans'
 EXT='dnsutils iputils-ping net-tools psmisc sysstat'
 NETWORK='curl telnet traceroute wget'
 LIBS='libbz2-dev libpcre3 libpcre3-dev libreadline-dev libsqlite3-dev libssl-dev zlib1g-dev'
+LIBS2='bzip2-devel bzip2-libs  readline readline-devel readline-static  openssl openssl-devel openssl-static sqlite-devel'
 SOFTWARE='git mysql-server zip p7zip apache2-utils sendmail'
 #apt install -y $BASIC $EXT $NETWORK $LIBS $SOFTWARE
-yum install -y $BASIC $EXT $NETWORK $LIBS $SOFTWARE
+yum install -y $BASIC $EXT $NETWORK $LIBS $SOFTWARE $LIBS2
 
 echo '删除临时文件'
 #apt autoremove
@@ -113,6 +114,7 @@ echo '正在安装python 3.6'
 if ! pyenv versions|grep 3.6.7 >/dev/null
 then
     pyenv install -v 3.6.7
+#    pyenv install 3.6.7
     echo -e 'python 3.6.7安装完成\n'
 else
     echo -e 'Python 3.6.7已经存在\n'
