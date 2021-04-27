@@ -125,7 +125,7 @@ pyenv global 3.6.7
 
 project_init(){
 echo '正在设置项目环境'
-proj='/opt/swiper/'
+proj='/opt/transparent/'
 mkdir -p $proj/{backend,frontend,deployment,data,logs}
 
 echo '创建python环境'

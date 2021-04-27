@@ -13,7 +13,8 @@
 
 # 用户名 查看用户名请登录用户中心->验证码、通知短信->帐户及签名设置->APIID
 # 密码 查看密码请登录用户中心->验证码、通知短信->帐户及签名设置->APIKEY
-HY_SMS_URL = 'http://106.ihuyi.com/webservice/sms.php?method=Submit'
+# HY_SMS_URL = 'http://106.ihuyi.com/webservice/sms.php?method=Submit'
+HY_SMS_URL = 'www.baidu.com'
 HY_SMS_PARAMS = {
     'account': 'C99197813',
     'password': '33b9bf0730e9694942d1cca6f5adb7ef',
