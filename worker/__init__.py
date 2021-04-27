@@ -1,6 +1,7 @@
 import os
-from celery import Celery
+from celery import Celery,platforms
 
+platforms.C_FORCE_ROOT = True  #加上这一行 (root用户启动celery)
 
 #设置环境变量，加载django Setttings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'transparent.settings')

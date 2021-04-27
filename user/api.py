@@ -3,7 +3,7 @@ from json import dumps
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from logic import send_verify_code
+from user.logic import send_verify_code
 
 
 # Create your views here.
