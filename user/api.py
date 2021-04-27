@@ -1,24 +1,26 @@
-from json import dumps
-
-from django.http import HttpResponse
-from django.shortcuts import render
-
-from user.logic import send_verify_code
-
+from user.logic import send_verify_code, check_verify_code
+from lib.http import render_json
 
 # Create your views here.
-
-def render_json(data, code=None):
-    json_data = dumps({
-        'code': code,
-        'data': data
-    })
-    return HttpResponse(json_data)
+from user.models import User
+from common import error
 
 
-def phone_register(request):
-    phone = request.GET['phone']
+def get_verify_code(request):
+    '''手机注册'''
+    phone = request.POST.get('phone')
     send_verify_code(phone)
+    return render_json(None, 0)
+
+def login(request):
+    phone = request.POST.get('phone')
+    vcode = request.POST.get('vcode')
+    if check_verify_code(phone, vcode):
+        user, created = User.objects.get(phone=phone)
+        request.session['uid'] = user.id
+        return render_json(user.to_dict(), 0)
+    else:
+        return render_json(None, error.VCODE_ERR)
 
 
 def register(request):
@@ -39,9 +41,6 @@ def register(request):
     return render_json(data, 1111)
 
 
-def login(request):
-    '''登录'''
-    pass
 
 
 def logout(request):

@@ -3,11 +3,10 @@ import datetime
 
 from django.db import models
 
+from lib.orm import ModelMixin
 
 
-
-
-class User(models.Model):
+class User(models.Model, ModelMixin):
     SEX = (('M', '男'), ('F', '女'))
 
     phone = models.CharField(max_length=16, verbose_name='电话')
@@ -25,7 +24,7 @@ class User(models.Model):
 
     @property
     def age(self):
-        #datetime.date() ，解决数据库时区不一致，不能相减的问题
+        # datetime.date() ，解决数据库时区不一致，不能相减的问题
         return (datetime.datetime.now().date() - self.birth_time.date()).days // 365
 
     @property
@@ -36,7 +35,7 @@ class User(models.Model):
         return self._profile
 
 
-class Profile(models.Model):
+class Profile(models.Model, ModelMixin):
     noticeNum = models.IntegerField(default=0, verbose_name='关注数量')
     fansNum = models.IntegerField(default=0, verbose_name='粉丝数量')
     location_city = models.CharField(max_length=16, verbose_name='所在城市')
