@@ -1,6 +1,22 @@
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.utils.deprecation import MiddlewareMixin
 
+from lib.http import render_json
+from user.models import User
+from common import error
+
+
+class AuthorMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        uid = request.session.get('uid')
+        if uid:
+            try:
+                request.user = User.objects.get(id=uid)
+                return
+            except User.DoesNotExist:
+                request.session.flush()
+        return render_json(None, error.LOGIN_ERR)
 
 class CorsMiddleware(MiddlewareMixin):
     def process_request(self, request):

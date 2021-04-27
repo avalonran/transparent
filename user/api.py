@@ -22,6 +22,9 @@ def login(request):
     else:
         return render_json(None, error.VCODE_ERR)
 
+def get_profile(request):
+    user = request.user
+    return render_json(user.profile.to_dict())
 
 def register(request):
     '''注册'''

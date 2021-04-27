@@ -20,4 +20,6 @@ import user.api
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('user/', user.api.register),
+    path('user/login', user.api.login),
+    path('user/get_profile', user.api.get_profile),
 ]
